@@ -1,1 +1,1 @@
-<h1>A simple endpoints with LLM and RAG</h1>
+<h1>A simple project with FastAPI and RAG</h1>
