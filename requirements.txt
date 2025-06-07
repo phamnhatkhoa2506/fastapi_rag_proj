@@ -8,3 +8,4 @@ pydantic
 fastapi
 beautifulsoup4
 uvicorn
+langserve
