@@ -9,3 +9,9 @@ fastapi
 beautifulsoup4
 uvicorn
 langserve
+wget
+transformers
+torch
+bitsandbytes
+huggingface_hub
+accelerate

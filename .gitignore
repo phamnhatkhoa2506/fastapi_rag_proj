@@ -1,3 +1,6 @@
 venv/
 src/**/__pycache__/
 data_sources/**/__pycache__/
+rag/**/__pycache__/
+notebooks/
+.env
