@@ -2,6 +2,8 @@ langchain-core
 langchain-community
 langchain-text-splitters
 langchain-google-genai
+langchain-huggingface
+langchain_chroma
 langgraph
 python-dotenv
 pydantic
@@ -15,3 +17,7 @@ torch
 bitsandbytes
 huggingface_hub
 accelerate
+sentence-transformers
+hf_xet
+pypdf
+rapidocr-onnxruntime

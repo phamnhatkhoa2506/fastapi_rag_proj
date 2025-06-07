@@ -6,6 +6,7 @@ from langserve import add_routes
 from huggingface_hub import login
 
 from src.endpoints import test
+from src.endpoints import bio_ai
 
 # Load environment variables
 load_dotenv()
@@ -36,6 +37,7 @@ app.add_middleware(
 
 # Include routes
 app.include_router(test.route)
+app.include_router(bio_ai.route)
 
 # langserve routes
 # add_routes(

@@ -10,14 +10,13 @@ class Str_OutputParser(StrOutputParser):
         super().__init__()
 
     def parse(self, text: str) -> str:
-        return self.extract_answer(self)
+        return self.extract_answer(text)
     
     def extract_answer(
-        sefl,
+        self,
         text_response: str,
         pattern: str = r"Answer:\s*(.*)"
     ) -> str:
-        
         match_ = re.search(
             pattern,
             text_response,
@@ -53,4 +52,19 @@ class Offline_RAG:
         return rag_chain
     
     def format_docs(self, docs: List[Any]) -> str:
-        return "\n\n".join(docs.page_content for doc in docs) 
+        """
+        Format documents into a single string
+        """
+        if not docs:
+            return "No relevant documents found."
+        
+        formatted_docs = []
+        for doc in docs:
+            if hasattr(doc, 'page_content'):
+                formatted_docs.append(doc.page_content)
+            elif isinstance(doc, str):
+                formatted_docs.append(doc)
+            elif isinstance(doc, dict) and 'page_content' in doc:
+                formatted_docs.append(doc['page_content'])
+        
+        return "\n\n".join(formatted_docs) 

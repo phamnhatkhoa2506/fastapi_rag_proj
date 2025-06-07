@@ -55,12 +55,12 @@ other_models = [
     "gemini-2.0-flash",
 ]
 
-nf4_config = BitsAndBytesConfig(
-    load_in_4bit=True,
-    bnb_4bit_quant_type="nf4",
-    bnb_4bit_use_double_quant=True,
-    bnb_4bit_compute_dtype=torch.bfloat16
-)
+# nf4_config = BitsAndBytesConfig(
+#     load_in_4bit=True,
+#     bnb_4bit_quant_type="nf4",
+#     bnb_4bit_use_double_quant=True,
+#     bnb_4bit_compute_dtype=torch.bfloat16
+# )
 
 def download_model_if_not_exists(model_name: str) -> None:
     """
@@ -82,7 +82,7 @@ def download_model_if_not_exists(model_name: str) -> None:
         print("Please ensure you have internet connection or the model is already downloaded.")
 
 
-def load_llm(model_name: str) -> Any:
+def load_llm(model_name: str = "gemini-2.0-flash") -> Any:
     '''
         Load LLm model
     '''
@@ -112,7 +112,7 @@ def get_hf_llm(
         # Load model with offline mode
         model = AutoModelForCausalLM.from_pretrained(
             model_name,
-            quantization_config=nf4_config,
+            # quantization_config=nf4_config,
             low_cpu_mem_usage=True,
             local_files_only=True  # Force offline mode
         )
@@ -138,3 +138,4 @@ def get_hf_llm(
         return llm
     except Exception as e:
         raise Exception(f"Failed to load model {model_name}: {str(e)}")
+    
