@@ -22,10 +22,14 @@ fastapi_rag_proj/
 │   ├── models/           # LLM model configurations
 │   ├── rag/              # RAG implementation
 │   └── app.py            # FastAPI application
-└── requirements.txt       # Project dependencies
+├── Dockerfile            # Docker configuration
+├── .dockerignore        # Docker ignore rules
+└── requirements.txt     # Project dependencies
 ```
 
 ## Setup
+
+### Local Setup
 
 1. Create a virtual environment:
 ```bash
@@ -44,11 +48,37 @@ Create a `.env` file with:
 HUGGINGFACE_TOKEN=your_token_here
 ```
 
+### Docker Setup
+
+1. Build the Docker image:
+```bash
+docker build -t fastapi-rag .
+```
+
+2. Run the container:
+```bash
+docker run -d \
+    --name fastapi-rag \
+    -p 8000:8000 \
+    -v $(pwd)/data_sources:/app/data_sources \
+    -e HUGGINGFACE_TOKEN=your_token_here \
+    fastapi-rag
+```
+
+3. To stop the container:
+```bash
+docker stop fastapi-rag
+```
+
 ## Usage
 
 1. Start the FastAPI server:
 ```bash
+# Local
 uvicorn src.app:app --reload
+
+# Docker (if using Docker setup)
+# The server will start automatically when the container runs
 ```
 
 2. Access the API documentation at `http://localhost:8000/docs`

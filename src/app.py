@@ -7,6 +7,7 @@ from huggingface_hub import login
 
 from src.endpoints import test
 from src.endpoints import bio_ai
+from src.rag.chain import bio_chain
 
 # Load environment variables
 load_dotenv()
@@ -40,8 +41,9 @@ app.include_router(test.route)
 app.include_router(bio_ai.route)
 
 # langserve routes
-# add_routes(
-#     app,
-#     playground_type="default",
-#     path="/genai"
-# )
+add_routes(
+    app,
+    bio_chain,
+    playground_type="default",
+    path="/genai"
+)

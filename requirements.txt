@@ -21,3 +21,4 @@ sentence-transformers
 hf_xet
 pypdf
 rapidocr-onnxruntime
+sse_starlette
